@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    tools{
+        maven 'maven_3_9_0'
+    }
+    stages{
+        stage('Build Maven'){
+            steps{
+                checkout scmGit(branches: [[name: '*/Demoapplication']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/joshna-hub/jenkins_pipeline.git']])
+                sh 'mvn clean install'
+            }
+        }
+    }
+}
